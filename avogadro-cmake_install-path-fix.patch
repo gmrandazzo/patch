@@ -1,27 +1,18 @@
---- avogadro-1.1.1/CMakeLists.txt.orig	2014-10-30 17:49:55.000000000 +0100
-+++ avogadro-1.1.1/CMakeLists.txt	2014-10-30 20:01:39.000000000 +0100
-@@ -361,23 +361,11 @@
- # Some rpath handling for Linux and Mac
- option(ENABLE_RPATH "Enable rpath support on Linux and Mac" ON)
- if(UNIX AND ENABLE_RPATH)
--  message(STATUS "RPath support enabled for installed binaries and libraries")
--  if(APPLE)
--    # Funky path logic in order to get the Avogadro application bundle working
+--- CMakeLists.txt.orig	2014-11-01 00:52:27.000000000 +0100
++++ CMakeLists.txt	2014-11-01 00:52:32.000000000 +0100
+@@ -364,13 +364,13 @@
+   message(STATUS "RPath support enabled for installed binaries and libraries")
+   if(APPLE)
+     # Funky path logic in order to get the Avogadro application bundle working
 -    set(CMAKE_BUNDLE_LOCATION "/Applications")
--    if(USE_VERSIONED_BUNDLE_LOCATION)
--      set(CMAKE_BUNDLE_NAME "Avogadro${Avogadro_VERSION}")
--    else(USE_VERSIONED_BUNDLE_LOCATION)
--      set(CMAKE_BUNDLE_NAME "Avogadro")
--    endif(USE_VERSIONED_BUNDLE_LOCATION)
++    set(CMAKE_BUNDLE_LOCATION "${CMAKE_INSTALL_PREFIX}/Applications")
+     if(USE_VERSIONED_BUNDLE_LOCATION)
+       set(CMAKE_BUNDLE_NAME "Avogadro${Avogadro_VERSION}")
+     else(USE_VERSIONED_BUNDLE_LOCATION)
+       set(CMAKE_BUNDLE_NAME "Avogadro")
+     endif(USE_VERSIONED_BUNDLE_LOCATION)
 -    set(CMAKE_INSTALL_PREFIX "/Applications/${CMAKE_BUNDLE_NAME}.app/Contents")
--    set(CMAKE_INSTALL_NAME_DIR "@executable_path/../${LIB_INSTALL_DIR}")
--  else()
-+    message(STATUS "RPath support enabled for installed binaries and libraries")
++    set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/Applications/${CMAKE_BUNDLE_NAME}.app/Contents")
+     set(CMAKE_INSTALL_NAME_DIR "@executable_path/../${LIB_INSTALL_DIR}")
+   else()
      set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}")
-     set(CMAKE_SKIP_BUILD_RPATH FALSE)
-     set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
--  endif()
- endif()
- 
- # Add support for an uninstall target
