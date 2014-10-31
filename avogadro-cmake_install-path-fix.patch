@@ -1,5 +1,5 @@
---- CMakeLists.txt.orig	2014-11-01 00:52:27.000000000 +0100
-+++ CMakeLists.txt	2014-11-01 00:52:32.000000000 +0100
+--- avogadro-1.1.1/CMakeLists.txt.orig	2014-11-01 00:52:27.000000000 +0100
++++ avogadro-1.1.1/CMakeLists.txt	2014-11-01 00:52:32.000000000 +0100
 @@ -364,13 +364,13 @@
    message(STATUS "RPath support enabled for installed binaries and libraries")
    if(APPLE)
